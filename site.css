@@ -197,3 +197,9 @@ footer{text-align:center;color:var(--muted);font-size:13px;margin-top:34px}
 .nav{justify-content:center}
 .nav .links{justify-content:center;margin:0 auto}
 .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---- wider rat line-up (v4) ---- */
+.hero{width:100%}
+.lineup{display:grid;grid-template-columns:1fr 1fr 1.3fr 1fr 1fr;align-items:end;width:min(100%,820px);margin-inline:auto;overflow:visible}
+.lineup img{width:118%;max-width:none;height:auto;margin:0 -9%}
+.lineup img:nth-child(3){width:118%;position:relative;z-index:1}
