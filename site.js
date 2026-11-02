@@ -2,7 +2,7 @@
 // Leave url empty ("") to show that network as "Soon" (not clickable).
 const SOCIALS = [
   { name: "Discord",   handle: "Join the server", url: "https://discord.gg/vwyFzGRTgj" },
-  { name: "Reddit",    handle: "r/idleratsgame",  url: "https://www.reddit.com/r/idleratsgame/" },
+  { name: "Reddit",    handle: "r/idleratsgame",  url: "" },
   { name: "TikTok",    handle: "@idleratsgame",   url: "https://www.tiktok.com/@idleratsgame" },
   { name: "YouTube",   handle: "@idleratsgame",   url: "https://www.youtube.com/@idleratsgame" },
   { name: "Instagram", handle: "@idleratsgame",   url: "https://www.instagram.com/idleratsgame/" },
