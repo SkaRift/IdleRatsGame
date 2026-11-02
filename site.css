@@ -190,3 +190,10 @@ footer{text-align:center;color:var(--muted);font-size:13px;margin-top:34px}
 .gamelogo img{display:block;width:min(400px,78vw);height:auto;filter:drop-shadow(0 6px 0 var(--ink)) drop-shadow(0 0 28px color-mix(in srgb,var(--slime) 30%,transparent))}
 .gamelogo.small img{width:min(260px,60vw)}
 .gamelogo .sub{font-family:var(--display);font-weight:400;font-size:clamp(30px,7vw,46px);line-height:1;color:var(--slime);letter-spacing:.04em;text-transform:uppercase;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:0 4px 0 #4f7e1b,0 6px 0 var(--ink)}
+
+/* ---- logo above the nav (v3) ---- */
+.toplogo{display:block;width:max-content;max-width:100%;margin:0 auto 14px}
+.toplogo img{display:block;height:150px;width:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 5px 0 var(--ink)) drop-shadow(0 0 22px color-mix(in srgb,var(--slime) 28%,transparent))}
+.nav{justify-content:center}
+.nav .links{justify-content:center;margin:0 auto}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
