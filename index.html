@@ -29,12 +29,15 @@
 }
 *{box-sizing:border-box}
 html{background:var(--night)}
-body{
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:
     radial-gradient(ellipse 70% 40% at 50% 0%, color-mix(in srgb,var(--slime) 18%, transparent), transparent 70%),
     repeating-linear-gradient(90deg, transparent 0 118px, color-mix(in srgb,var(--ink) 35%, transparent) 118px 122px),
     linear-gradient(180deg,var(--tunnel),var(--night) 60%);
-  background-attachment:fixed;
+}
+body{
+  background:var(--night);position:relative;z-index:0;
   color:var(--cream);font-family:var(--body);font-weight:600;font-size:15px;line-height:1.5;
   min-height:100%;
 }
@@ -60,7 +63,7 @@ header{display:grid;justify-items:center;text-align:center;gap:6px;margin-bottom
     radial-gradient(ellipse 30% 25% at 10% 90%,color-mix(in srgb,var(--rust) 35%,transparent),transparent 70%),
     linear-gradient(180deg,var(--steel-hi),var(--steel));
   border:3px solid var(--ink);border-radius:12px;
-  box-shadow:inset 0 0 0 2px color-mix(in srgb,#9fb3b0 30%,transparent),0 6px 0 var(--ink),0 10px 24px rgba(0,0,0,.45);
+  box-shadow:inset 0 0 0 2px color-mix(in srgb,#9fb3b0 30%,transparent),0 6px 0 var(--ink);
 }
 
 /* ---- filters ---- */
@@ -84,7 +87,8 @@ header{display:grid;justify-items:center;text-align:center;gap:6px;margin-bottom
 .card{
   font:inherit;color:inherit;text-align:center;cursor:pointer;padding:10px 10px 12px;
   display:grid;grid-template-rows:auto auto;gap:8px;min-width:0;
-  transition:transform .15s ease, box-shadow .15s ease;
+  transition:transform .15s ease;
+  content-visibility:auto;contain-intrinsic-size:auto 230px;
 }
 .card:hover{transform:translateY(-3px)}
 .card:active{transform:translateY(1px)}
@@ -92,9 +96,9 @@ header{display:grid;justify-items:center;text-align:center;gap:6px;margin-bottom
   position:relative;aspect-ratio:1;max-width:100%;border:3px solid var(--ink);border-radius:8px;overflow:hidden;
   background:radial-gradient(circle at 50% 62%,color-mix(in srgb,var(--c) 38%,transparent),transparent 62%),
              linear-gradient(180deg,#14293a,#0c1828);
-  box-shadow:inset 0 0 18px rgba(0,0,0,.7);
+  box-shadow:inset 0 -10px 0 rgba(0,0,0,.25);
 }
-.portrait img{position:absolute;inset:6% 4% 2%;width:92%;height:92%;object-fit:contain;filter:drop-shadow(0 4px 2px rgba(0,0,0,.45))}
+.portrait img{position:absolute;inset:6% 4% 2%;width:92%;height:92%;object-fit:contain}
 .elem{position:absolute;top:6px;left:6px;width:14px;height:14px;border-radius:50%;background:var(--c);border:2px solid var(--ink);box-shadow:0 0 8px var(--c)}
 .stars{position:absolute;bottom:4px;right:6px;font-size:12px;color:var(--cheese);letter-spacing:-1px;text-shadow:0 1px 0 var(--ink),0 0 4px var(--ink)}
 .plate{
