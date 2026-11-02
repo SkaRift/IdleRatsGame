@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;700;800&display=swap">
-<link rel="stylesheet" href="site.css?v=5">
+<link rel="stylesheet" href="site.css?v=6">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -20,7 +20,10 @@
     <div class="links">
       <a href="./" aria-current="page">Home</a>
       <a href="roster.html">Roster</a>
-      <a href="https://skarift.github.io/idlerats-legal/">Privacy</a>
+      <div class="dd">
+        <button type="button" id="communityBtn" aria-haspopup="true" aria-expanded="false" aria-controls="communityMenu">Community <span class="caret" aria-hidden="true">▾</span></button>
+        <div class="ddmenu panel" id="communityMenu" role="menu" hidden></div>
+      </div>
     </div>
   </nav>
 
@@ -92,5 +95,6 @@
 
   <footer class="foot"><span>Idle Rats © 2026 SkaRift</span><a href="./">Home</a><a href="roster.html">Roster</a><a href="https://skarift.github.io/idlerats-legal/">Privacy Policy</a></footer>
 </div>
+<script src="site.js?v=6"></script>
 </body>
 </html>
