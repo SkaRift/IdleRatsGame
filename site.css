@@ -131,7 +131,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;margin-top:34px}
 @media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover,.card:active{transform:none}}
 
 /* ---- site nav (shared) ---- */
-.nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;padding:10px 14px 10px 16px;margin-bottom:26px}
+.nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 16px;padding:10px 14px 10px 16px;margin-bottom:26px}
 .brand{font-family:var(--display);font-size:22px;line-height:1;text-decoration:none;color:var(--cream);display:inline-flex;align-items:center;gap:8px;-webkit-text-stroke:1px var(--ink);paint-order:stroke fill;text-shadow:0 2px 0 var(--ink)}
 .brand b{color:var(--slime);font-weight:400}
 .wedge{width:22px;height:18px;flex:none;background:radial-gradient(circle at 30% 60%,#c9952a 0 2px,transparent 2.5px),radial-gradient(circle at 62% 70%,#c9952a 0 1.6px,transparent 2px),var(--cheese);clip-path:polygon(0 100%,100% 100%,100% 22%);border-radius:2px}
@@ -184,3 +184,9 @@ footer{text-align:center;color:var(--muted);font-size:13px;margin-top:34px}
 .note strong{color:var(--cheese);font-family:var(--display);font-weight:400;letter-spacing:.04em}
 .foot{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;color:var(--muted);font-size:13px;margin-top:30px}
 .foot a{color:var(--cream)}
+
+/* ---- game logo ---- */
+.gamelogo{margin:0;display:grid;justify-items:center;gap:2px}
+.gamelogo img{display:block;width:min(400px,78vw);height:auto;filter:drop-shadow(0 6px 0 var(--ink)) drop-shadow(0 0 28px color-mix(in srgb,var(--slime) 30%,transparent))}
+.gamelogo.small img{width:min(260px,60vw)}
+.gamelogo .sub{font-family:var(--display);font-weight:400;font-size:clamp(30px,7vw,46px);line-height:1;color:var(--slime);letter-spacing:.04em;text-transform:uppercase;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:0 4px 0 #4f7e1b,0 6px 0 var(--ink)}
