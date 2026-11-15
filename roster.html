@@ -113,10 +113,51 @@ function render(){
 }
 
 const dlg=document.getElementById("dlg");
+// Stand the rat on its lid: measure the art's visible pixels, scale it to fit
+// (keeping aspect), centre it on the lid by its visual weight, and let it pop
+// a little above the frame. Falls back to the plain CSS fit if measuring fails.
+const fitCache={};
+function measure(src){
+  return new Promise(res=>{
+    if(fitCache[src]) return res(fitCache[src]);
+    const t=new Image();
+    t.onload=()=>{
+      try{
+        const N=180,c=document.createElement("canvas");c.width=c.height=N;
+        const x=c.getContext("2d",{willReadFrequently:true});x.drawImage(t,0,0,N,N);
+        const d=x.getImageData(0,0,N,N).data;
+        let x0=N,x1=-1,y0=N,y1=-1,m=0,mx=0;
+        for(let y=0;y<N;y++)for(let xx=0;xx<N;xx++){const a=d[(y*N+xx)*4+3];if(a>40){if(xx<x0)x0=xx;if(xx>x1)x1=xx;if(y<y0)y0=y;if(y>y1)y1=y;m+=a;mx+=a*xx}}
+        if(x1<0) return res(null);
+        // Width for scaling ignores thin extremes (tails, wisps): trim columns with little ink.
+        const col=new Array(N).fill(0);
+        for(let y=0;y<N;y++)for(let xx=0;xx<N;xx++){const a=d[(y*N+xx)*4+3];if(a>40)col[xx]+=a}
+        const cm=Math.max(...col);let tx0=x0,tx1=x1;
+        while(tx0<tx1&&col[tx0]<cm*0.12)tx0++;
+        while(tx1>tx0&&col[tx1]<cm*0.12)tx1--;
+        res(fitCache[src]={x0:tx0/N,x1:(tx1+1)/N,y0:y0/N,y1:(y1+1)/N,cx:mx/m/N+0.5/N});
+      }catch(e){res(null)}
+    };
+    t.onerror=()=>res(null);
+    t.src=src;
+  });
+}
+async function fitRat(im,src){
+  im.removeAttribute("style");im.style.visibility="hidden";im.src=src;
+  const b=await measure(src);
+  if(im.getAttribute("src")!==src){return}
+  if(b){
+    const FEET=0.9, MAXH=0.96, MAXW=0.8;           // fractions of the frame
+    const bw=Math.max(b.cx-b.x0,b.x1-b.cx)*2, bh=b.y1-b.y0;
+    const sc=Math.min(MAXW/bw, MAXH/bh);            // frame-widths per source-width
+    im.style.cssText=`left:${(0.5-b.cx*sc)*100}%;top:${(FEET-b.y1*sc)*100}%;width:${sc*100}%;height:${sc*100}%`;
+  }
+  im.style.visibility="visible";
+}
 function open(i,fromHash){
   const r=RATS[i];
   document.getElementById("dPortrait").style.setProperty("--c",EL[r.e]);
-  const im=document.getElementById("dImg");im.src=r.img;im.alt=r.n;
+  const im=document.getElementById("dImg");im.alt=r.n;fitRat(im,r.img);
   document.getElementById("dPed").src="img/ped_"+r.e.toLowerCase()+".webp";
   document.getElementById("dName").textContent=r.n;
   document.getElementById("dTitle").textContent=r.t;
