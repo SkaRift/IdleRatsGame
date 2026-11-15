@@ -209,6 +209,8 @@ footer{text-align:center;color:var(--muted);font-size:13px;margin-top:34px}
 .lineup{display:grid;grid-template-columns:1fr 1fr 1.3fr 1fr 1fr;align-items:end;width:min(100%,820px);margin-inline:auto;overflow:visible}
 .lineup img{width:118%;max-width:none;height:auto;margin:0 -9%}
 .lineup img:nth-child(3){width:118%;position:relative;z-index:1}
+/* Left two rats are mirrored so they face the left, framing Pipsqueak in the middle. */
+.lineup img:nth-child(-n+2){transform:scaleX(-1)}
 
 /* ---- hero layout (v5) ---- */
 .nav{padding:6px 12px;margin-bottom:18px;border-radius:999px}
