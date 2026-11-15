@@ -37,6 +37,7 @@
   <section class="panel filters" aria-label="Filter the roster">
     <div class="row" id="elRow"><span class="lbl">Element</span></div>
     <div class="row" id="roRow"><span class="lbl">Role</span></div>
+    <div class="row" id="stRow"><span class="lbl">Stars</span></div>
   </section>
   <p class="count" id="count" aria-live="polite"></p>
 
@@ -72,18 +73,21 @@ const EL = {Fire:"var(--fire)",Water:"var(--water)",Earth:"var(--earth)",Light:"
 const ROLES = ["Guardian","Ranger","Artillerist","Bard"];
 const slug = n => n.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 const esc = s => s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let fEl="All", fRo="All";
+let fEl="All", fRo="All", fSt="All";
 
 function chip(row,label,color){
   const b=document.createElement("button");b.className="chip";b.type="button";
   b.innerHTML=(color?`<span class="dot" style="--c:${color}"></span>`:"")+esc(label);
   b.dataset.v=label;row.appendChild(b);
 }
-const elRow=document.getElementById("elRow"),roRow=document.getElementById("roRow");
+const elRow=document.getElementById("elRow"),roRow=document.getElementById("roRow"),stRow=document.getElementById("stRow");
 chip(elRow,"All",null);["Fire","Water","Earth","Light","Dark"].forEach(e=>chip(elRow,e,EL[e]));
 chip(roRow,"All",null);ROLES.forEach(r=>chip(roRow,r,null));
+// Starting rank: chip value is the number, label shows the stars.
+chip(stRow,"All",null);[1,2,3,4,5].forEach(s=>{chip(stRow,s+"★",null);stRow.lastChild.dataset.v=String(s)});
 elRow.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{fEl=b.dataset.v;render()}));
 roRow.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{fRo=b.dataset.v;render()}));
+stRow.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{fSt=b.dataset.v;render()}));
 
 const grid=document.getElementById("grid");
 RATS.forEach((r,i)=>{
@@ -98,11 +102,12 @@ RATS.forEach((r,i)=>{
 function render(){
   let n=0;
   grid.querySelectorAll(".card").forEach(c=>{
-    const r=RATS[c.dataset.i];const ok=(fEl==="All"||r.e===fEl)&&(fRo==="All"||r.r===fRo);
+    const r=RATS[c.dataset.i];const ok=(fEl==="All"||r.e===fEl)&&(fRo==="All"||r.r===fRo)&&(fSt==="All"||String(r.s)===fSt);
     c.hidden=!ok;if(ok)n++;
   });
   elRow.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===fEl));
   roRow.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===fRo));
+  stRow.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===fSt));
   document.getElementById("count").textContent=`Showing ${n} of ${RATS.length} rats`;
   document.getElementById("empty").hidden=n>0;
 }
