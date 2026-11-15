@@ -52,7 +52,7 @@
   <div class="panel sheet">
     <button class="close" id="closeBtn" aria-label="Close">✕</button>
     <div class="top">
-      <div class="portrait" id="dPortrait"><span class="elem"></span><img id="dImg" alt=""></div>
+      <div class="portrait" id="dPortrait"><span class="elem"></span><img class="ped" id="dPed" alt="" aria-hidden="true"><img id="dImg" alt=""></div>
       <div>
         <h2 class="dname" id="dName"></h2>
         <p class="dtitle" id="dTitle"></p>
@@ -117,6 +117,7 @@ function open(i,fromHash){
   const r=RATS[i];
   document.getElementById("dPortrait").style.setProperty("--c",EL[r.e]);
   const im=document.getElementById("dImg");im.src=r.img;im.alt=r.n;
+  document.getElementById("dPed").src="img/ped_"+r.e.toLowerCase()+".webp";
   document.getElementById("dName").textContent=r.n;
   document.getElementById("dTitle").textContent=r.t;
   document.getElementById("dBadges").innerHTML=
