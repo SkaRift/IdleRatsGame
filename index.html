@@ -96,5 +96,19 @@
   <footer class="foot"><span>Idle Rats © 2026 SkaRift</span><a href="./">Home</a><a href="roster.html">Roster</a><a href="https://skarift.github.io/idlerats-legal/">Privacy Policy</a></footer>
 </div>
 <script src="site.js?v=10"></script>
+<script src="rats.js?v=1"></script>
+<script>
+// Home lineup: Pipsqueak always in the middle, four random rats around him.
+(function(){
+  try{
+    var box=document.querySelector(".lineup.crew");if(!box||typeof RATS==="undefined")return;
+    var pip=RATS.filter(function(r){return r.n==="Pipsqueak"})[0];if(!pip)return;
+    var pool=RATS.filter(function(r){return r.n!=="Pipsqueak"});
+    for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=pool[i];pool[i]=pool[j];pool[j]=t}
+    var pick=[pool[0],pool[1],pip,pool[2],pool[3]];
+    box.innerHTML=pick.map(function(r){return '<img src="'+r.img+'" alt="" width="360" height="360">'}).join("");
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
