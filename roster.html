@@ -67,7 +67,7 @@
   </div>
 </dialog>
 
-<script src="rats.js?v=1"></script>
+<script src="rats.js?v=2"></script>
 <script>
 const EL = {Fire:"var(--fire)",Water:"var(--water)",Earth:"var(--earth)",Light:"var(--light)",Dark:"var(--dark)"};
 const ROLES = ["Guardian","Ranger","Artillerist","Bard"];
@@ -167,7 +167,7 @@ function open(i,fromHash){
   document.getElementById("dBio").textContent=r.b;
   const lv=["Lv 1","Lv 51","Lv 101"];
   document.getElementById("dSkills").innerHTML=r.k.map((k,j)=>`<li><span class="lv">${lv[j]}</span><span class="sk">${esc(k[0])}</span><span class="sd">${esc(k[1])}</span></li>`).join("")+
-    `<li><span class="lv aura">Lv 75</span><span class="sk">Leader Aura</span><span class="sd">${esc(r.a)} Active while in the leader slot.</span></li>`;
+    `<li><span class="lv aura">Lv 75</span><span class="sk">Leader Aura</span><span class="sd">${esc(r.a)}</span></li>`;
   if(!dlg.open){try{dlg.showModal()}catch(e){dlg.setAttribute("open","")}}
   dlg.querySelector(".sheet").scrollTop=0;
   if(!fromHash){try{history.replaceState(null,"","#"+slug(r.n))}catch(e){location.hash=slug(r.n)}}
