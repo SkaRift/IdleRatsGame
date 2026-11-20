@@ -177,7 +177,7 @@ dlg.addEventListener("close",()=>{if(location.hash){try{history.replaceState(nul
 document.getElementById("closeBtn").addEventListener("click",close);
 dlg.addEventListener("click",e=>{if(e.target===dlg)close()});
 // Old names of renamed rats, so links shared before a rename still open the right card.
-const FORMER_SLUGS = {"ratcula":"count-ratcula"};
+const FORMER_SLUGS = {"ratcula":"count-ratcula","michelratgelo":"micelangelo","ratchelangelo":"micelangelo"};
 function fromHash(){let h=location.hash.slice(1);if(!h)return;h=FORMER_SLUGS[h]||h;const i=RATS.findIndex(r=>slug(r.n)===h);if(i>=0)open(i,true)}
 window.addEventListener("hashchange",fromHash);
 render();fromHash();
